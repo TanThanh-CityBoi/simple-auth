@@ -1,6 +1,8 @@
 const express = require('express');
-const Account = require('../models/account')
-const { isEmpty } = require('lodash')
+const Account = require('../models/account');
+const bycrypt = require('bcrypt');
+const { validateEmail } = require('../utils/index')
+const { isEmpty } = require('lodash');
 
 
 const router = express.Router();
@@ -17,9 +19,9 @@ router.post('/sign-in-google', async (req, res) => {
 router.post('/sign-up', async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body
-        const [isValid, messageRes] = validateData(req.body)
+        const [isValid, messageRes] = await validateData(req.body)
         if (!isValid) return res.status(400).send(JSON.stringify({
-            statusCode: 400,
+            status: 400,
             message: messageRes
         }))
 
@@ -27,9 +29,10 @@ router.post('/sign-up', async (req, res) => {
             email,
             firstName,
             lastName,
-            password
+            password: bycrypt.hashSync(password, 10)
         })
-        newAccount.save()
+        await newAccount.save();
+        delete newAccount._doc.password
         return res.status(201).send(JSON.stringify({
             status: 201,
             message: 'CREATE ACCOUNT SUCCESSFULLY',
@@ -37,8 +40,8 @@ router.post('/sign-up', async (req, res) => {
         }))
     }
     catch (error) {
-        res.status(500).send(JSON.stringify({
-            statusCode: 500,
+        return res.status(500).send(JSON.stringify({
+            status: 500,
             message: "INTERNAL_SERVER_ERROR",
             error
         }))
@@ -46,8 +49,8 @@ router.post('/sign-up', async (req, res) => {
 })
 
 const validateData = async (data) => {
-    const { firstName, lastName, email, password, confirmPassword } = data
-    if (!firstName || !lastName || !email || !password || !confirmPassword)
+    const { email, password, confirmPassword } = data
+    if (!email || !password || !confirmPassword)
         return [false, 'INVALID DATA']
     if (!validateEmail(email))
         return [false, 'INVALID EMAIL']
@@ -55,9 +58,8 @@ const validateData = async (data) => {
         return [false, 'PASSWORD AND CONFIRMPASSWORD NOT EQUAL']
 
     const existedUser = await Account.findOne({ email }).exec()
-    if (isEmpty(existedUser)) {
-        return [false, 'EXISTED USER']
-    }
+    if (!isEmpty(existedUser)) return [false, 'EXISTED USER']
+    return [true, '']
 }
 
 module.exports = router
