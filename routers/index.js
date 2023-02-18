@@ -53,10 +53,16 @@ router.post('/sign-in-google', async (req, res) => {
             const existedUser = await User.findOne({ email }).exec()
             if (!isEmpty(existedUser)) {
                 delete existedUser._doc.password;
+                const token = jwt.sign({
+                    id: existedUser._id
+                }, process.env.JWT_SECRET, { expiresIn: "8h" })
                 return res.status(200).send(JSON.stringify({
                     status: 200,
                     message: 'LOGIN SUCCESSFULLY',
-                    data: existedUser
+                    data: {
+                        user: existedUser,
+                        token,
+                    }
                 }))
             }
 
