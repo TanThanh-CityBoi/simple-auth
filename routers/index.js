@@ -4,7 +4,7 @@ const bycrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
 const { validateEmail } = require('../utils/index')
 const { isEmpty } = require('lodash');
-
+const axios = require('axios')
 const router = express.Router();
 
 router.post('/sign-in', async (req, res) => {
@@ -51,14 +51,17 @@ router.post('/sign-in-google', async (req, res) => {
             const email = response.data.email;
 
             const existedUser = await User.findOne({ email }).exec()
-            delete existedUser._doc.password;
-            if (existedUser) return res.status(200).send(JSON.stringify({
-                status: 200,
-                message: 'LOGIN SUCCESSFULLY',
-                data: existedUser
-            }))
+            if (!isEmpty(existedUser)) {
+                delete existedUser._doc.password;
+                return res.status(200).send(JSON.stringify({
+                    status: 200,
+                    message: 'LOGIN SUCCESSFULLY',
+                    data: existedUser
+                }))
+            }
 
             const newUser = new User({ email, firstName, lastName })
+            newUser.save()
             const token = jwt.sign({
                 id: newUser._id
             }, process.env.JWT_SECRET, { expiresIn: "8h" })
@@ -75,7 +78,7 @@ router.post('/sign-in-google', async (req, res) => {
         .catch(err => {
             res.status(400).json({
                 status: 400,
-                message: "INVALID ACCESS TOKEN!",
+                message: "INTERNAL SERVER ERROR",
                 err
             })
         })
