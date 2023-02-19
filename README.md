@@ -13,7 +13,7 @@ yarn
 yarn start
 ```
 
-# Back-end
+## Back-end
 ```
 # Clone source BE 
 https://github.com/TanThanh-CityBoi/Simple-Auth-BE.git
@@ -21,7 +21,7 @@ https://github.com/TanThanh-CityBoi/Simple-Auth-BE.git
 # Install package  
 npm i
 
-# Create file .env with content like file .env-dev 
+# Create .env file with the same content as the .env-dev file
 
 # Run dev 
 npm run start:dev
