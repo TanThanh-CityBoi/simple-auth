@@ -19,10 +19,10 @@ yarn start
 https://github.com/TanThanh-CityBoi/Simple-Auth-BE.git
 
 # Install package  
-npm i
+yarn
 
 # Create .env file with the same content as the .env-dev file
 
 # Run dev 
-npm run start:dev
+yarn start:dev
 ```
