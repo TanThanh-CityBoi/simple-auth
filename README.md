@@ -1,31 +1,28 @@
 # Simple-Auth
 
-## How to run
+## Front-end
 
-# Front-end
+```
+# Clone source FE  
+https://github.com/TanThanh-CityBoi/Simple-Auth-FE.git
 
-`
-// Clone source FE
-git clone
-
-// Install package
+# Install package 
 yarn
 
-//Run
+# Run
 yarn start
-`
+```
 
 # Back-end
-`
-// Clone source BE
-git clone 
+```
+# Clone source BE 
+https://github.com/TanThanh-CityBoi/Simple-Auth-BE.git
 
-// Install package
+# Install package  
 npm i
 
-// Create file .env
-// Copy file .env-dev then paste to .env
+# Create file .env with content like file .env-dev 
 
-//Run dev
+# Run dev 
 npm run start:dev
-``
+```
