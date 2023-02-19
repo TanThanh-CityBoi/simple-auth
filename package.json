@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart:dev": "npm i",
     "start:dev": "nodemon index.js",
     "start": "node index.js"
   },
