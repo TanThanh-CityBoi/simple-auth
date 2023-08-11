@@ -1,0 +1,73 @@
+.sign-in-wrapper {
+  min-height: 100vh;
+  min-width: 30rem;
+  align-items: center;
+  background-color: #566eef;
+
+  .sign-in-form {
+    width: 40rem;
+    min-width: 30rem;
+    border-radius: .5rem;
+    padding: 4em;
+    background-color: #ffffff;
+
+    input {
+      width: 100%;
+      height: 4rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      font-size: 1.5rem;
+      border: solid 1px #858585;
+      border-radius: .3rem;
+    }
+
+    :focus-visible {
+      outline: none;
+    }
+
+    form {
+      div {
+        position: relative;
+        .btn-show-password {
+          position: absolute;
+          right: .1rem;
+          top: .1rem;
+          height: 3.8rem;
+          width: 4rem;
+          border: none;
+          svg{
+            font-size: 1.7rem;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .span-or {
+    font-size: 1.2rem;
+  }
+
+  .sign-up {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .submit-btn {
+    background-color: #566eef;
+  }
+
+  .gg-btn {
+    svg{
+      font-size: 1.6rem;
+      margin-bottom: 2px;
+      margin-right: .4rem;
+    }
+    background-color: #e24747;
+  }
+
+  .strong {
+    color: #566eef;
+  }
+}

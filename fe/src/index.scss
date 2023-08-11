@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap");
+
+html {
+  font-size: 62.5% !important;
+  line-height: 1.6em;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.input-error-validation {
+  color: rgb(209, 9, 9);
+  font-weight: 500;
+  font-style: italic;
+  font-size: 1.2rem !important;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.btn {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  border-radius: .5rem;
+  padding: 1rem;
+  border: 0px none;
+  width: 100%;
+}
+
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+
+  .btn-logout {
+    background-color: #566eef;
+    font-size: 1.6rem;
+    font-weight: 500
+  }
+}
+
+.t-14 {
+  font-size: 1.4rem;
+}
+
+.t-26 {
+  font-size: 2.6rem;
+}
